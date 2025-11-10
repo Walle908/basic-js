@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../lib');
+const { NotImplementedError } = require("../lib");
 
 /**
  * Create a repeating string based on the given parameters
@@ -16,11 +16,32 @@ const { NotImplementedError } = require('../lib');
  *
  */
 
-function repeater(/* str, options */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+function repeater(str, options) {
+  let {
+    repeatTimes = 1,
+    separator = "+",
+    addition = "",
+    additionRepeatTimes = 1,
+    additionSeparator = "|",
+  } = options;
+
+  if (typeof str !== "string") {
+    str = String(str);
+  }
+  if (typeof addition !== "string") {
+    addition = String(addition);
+  }
+
+  const additionLine = new Array(additionRepeatTimes)
+    .fill(addition)
+    .join(`${additionSeparator}`);
+  const line = new Array(repeatTimes)
+    .fill(str + additionLine)
+    .join(`${separator}`);
+
+  return line;
 }
 
 module.exports = {
-  repeater
+  repeater,
 };
